@@ -34,6 +34,7 @@ def main():
         screen.blit(pipe.surface,pipe.rect) 
 
         floor.animate(v["world_speed"],850)
+        pipe.animate(v["world_speed"])
         bird.animate(v["gravity"])
 
 

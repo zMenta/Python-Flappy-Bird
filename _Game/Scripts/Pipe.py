@@ -11,7 +11,16 @@ class Pipe:
         self.sprite_path = sprite_path
         self.position = position
 
-        self.surface = pygame.image.load(sprite_path)
+        self.surface = pygame.image.load(sprite_path).convert()
         self.surface = pygame.transform.scale2x(self.surface)
 
         self.rect = self.surface.get_rect(center = self.position)
+
+    def animate(self, speed) -> None:
+        """Animates the pipe from right to left.
+
+        Args:
+            speed (number): Determines the speed of the pipe.
+        """
+
+        self.rect.centerx -= speed

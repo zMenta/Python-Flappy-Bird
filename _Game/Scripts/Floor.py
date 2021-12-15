@@ -26,6 +26,7 @@ class Floor:
 
         Args:
             speed (number): Determines the speed of the animation
+            floor_y_position (number): Determines the y position of the floor.
         """
         self.floor_x_pos -= speed
         if self.floor_x_pos <= -self.surface_1.get_width():

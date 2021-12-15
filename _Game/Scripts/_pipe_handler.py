@@ -8,7 +8,7 @@ from _Game.Scripts.Pipe import Pipe
 SPAWNPIPE = pygame.USEREVENT
 pygame.time.set_timer(SPAWNPIPE, v["spawn_pipe_timer"])
 
-def spawn_pipe(event,randint_modifier=(-230,230),pipe_list=[]):
+def spawn_pipe(event,randint_modifier=(-220,220),pipe_list=[]):
     """Spawn a pipe.
 
     Args:

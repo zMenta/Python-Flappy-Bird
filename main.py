@@ -3,6 +3,7 @@ import pygame
 
 from _Game.Scripts.Bird import Bird
 from _Game.Scripts.Floor import Floor
+from _Game.Scripts.Pipe import Pipe
 from _Game.Scripts._game_variables import variables as v
 
 def main():
@@ -14,6 +15,7 @@ def main():
 
     floor = Floor("_Game/Images/base.png", screen)
     bird = Bird("_Game/Images/yellowbird-midflap.png",(100,512), 20)
+    pipe = Pipe("_Game/Images/pipe-green.png", (400,900))
 
     #Game Loop
     while True:
@@ -29,8 +31,9 @@ def main():
 
         screen.blit(bg_surface,(0,0))
         screen.blit(bird.surface,bird.rect)
+        screen.blit(pipe.surface,pipe.rect) 
 
-        floor.animate(2,850)
+        floor.animate(v["world_speed"],850)
         bird.animate(v["gravity"])
 
 

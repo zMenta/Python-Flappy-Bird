@@ -30,8 +30,6 @@ def main():
         screen.blit(bg_surface,(0,0))
         screen.blit(bird.surface,bird.rect)
 
-        print(bird.speed)
-
         floor.animate(2,850)
         bird.animate(v["gravity"])
 

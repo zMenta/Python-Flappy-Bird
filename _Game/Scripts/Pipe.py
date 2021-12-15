@@ -1,4 +1,5 @@
 import pygame
+pygame.init()
 
 class Pipe:
     def __init__(self, sprite_path, position) -> None:
@@ -15,6 +16,7 @@ class Pipe:
         self.surface = pygame.transform.scale2x(self.surface)
 
         self.rect = self.surface.get_rect(center = self.position)
+
 
     def animate(self, speed) -> None:
         """Animates the pipe from right to left.

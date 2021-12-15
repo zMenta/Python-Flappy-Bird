@@ -1,3 +1,4 @@
+from random import randint
 import pygame
 
 from _Game.Scripts._game_variables import variables as v
@@ -7,18 +8,21 @@ from _Game.Scripts.Pipe import Pipe
 SPAWNPIPE = pygame.USEREVENT
 pygame.time.set_timer(SPAWNPIPE, v["spawn_pipe_timer"])
 
-def spawn_pipe(event,pipe_list=[]):
+def spawn_pipe(event,randint_modifier=(-230,230),pipe_list=[]):
     """Spawn a pipe.
 
     Args:
         event (pygame.event.get()): pygame event
+        randint_modifier (tuple): Tuple value to be used in randint to modify Y position of the pipes.
     """
     
     if event.type == SPAWNPIPE:
+        y_modifier = randint(-250,250)
+
         flip = False
-        pipe_list.append(create_pipe(flip))
+        pipe_list.append(create_pipe(y_modifier,flip))
         flip = not flip
-        pipe_list.append(create_pipe(flip))
+        pipe_list.append(create_pipe(y_modifier,flip))
 
         if len(pipe_list) >= 12:
             pipe_list.pop(0)
@@ -26,11 +30,11 @@ def spawn_pipe(event,pipe_list=[]):
     return pipe_list
 
 
-def create_pipe(flip=False):
+def create_pipe(y_modifier,flip=False):
     """Creates a new pipe
     """
-    bottom = (700,900)
-    top = (700,0)
+    bottom = (700,900+y_modifier)
+    top = (700,0+y_modifier)
 
     if flip == False:
         pipe = Pipe("_Game/Images/pipe-green.png", bottom)

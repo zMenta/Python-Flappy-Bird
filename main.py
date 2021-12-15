@@ -3,7 +3,7 @@ import pygame
 
 from _Game.Scripts.Bird import Bird
 from _Game.Scripts.Floor import Floor
-from _Game.Scripts.game_variables import variables as v
+from _Game.Scripts._game_variables import variables as v
 
 def main():
     screen = pygame.display.set_mode(v["screen_size"])

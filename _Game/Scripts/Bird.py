@@ -5,8 +5,8 @@ class Bird:
         """Initializes Bird constructor
 
         Args:
-            sprite_path (string): The path of the sprite the bird will be
-            position (tuple): Bird position on the screen
+            sprite_path (string): The path of the sprite
+            position (tuple): Bird position on the screen, center.
             speed_limit (number): Determines the speed limit the bird can reach.
         """
         self.sprite_path = sprite_path

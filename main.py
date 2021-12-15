@@ -1,11 +1,15 @@
 import sys
-import pygame
+import pygame 
+pygame.init()
 
 from _Game.Scripts.Bird import Bird
 from _Game.Scripts.Floor import Floor
+from _Game.Scripts.Pipe import Pipe
 from _Game.Scripts._game_variables import variables as v
+import _Game.Scripts._pipe_handler as _pipe_handler
 
 def main():
+    
     screen = pygame.display.set_mode(v["screen_size"])
     clock = pygame.time.Clock()
 
@@ -22,17 +26,19 @@ def main():
                 pygame.quit()
                 sys.exit()
 
-            if event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYDOWN: 
                 if event.key == pygame.K_SPACE:
-                    bird.flap(12)
+                    bird.flap(9)
 
+            pipe_list = _pipe_handler.spawn_pipe(event) 
 
         screen.blit(bg_surface,(0,0))
         screen.blit(bird.surface,bird.rect)
+        _pipe_handler.pipes_blit(pipe_list, screen)
 
-        floor.animate(2,850)
+        floor.animate(v["world_speed"],850)
+        _pipe_handler.pipes_animation(pipe_list)
         bird.animate(v["gravity"])
-
 
         pygame.display.update()
         clock.tick(v["fps_limit"])

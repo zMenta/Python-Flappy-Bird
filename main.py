@@ -28,7 +28,7 @@ def main():
 
             if event.type == pygame.KEYDOWN: 
                 if event.key == pygame.K_SPACE:
-                    bird.flap(12)
+                    bird.flap(9)
 
             pipe_list = _pipe_handler.spawn_pipe(event) 
 

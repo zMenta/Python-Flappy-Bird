@@ -1,7 +1,5 @@
 import pygame
 
-screen = pygame.display.set_mode((576,1024))
-
 class Floor:
     """
     Floor class and it's method to draw
@@ -34,4 +32,4 @@ class Floor:
             self.floor_x_pos = 0
 
         self.screen.blit(self.surface_1,(self.floor_x_pos,floor_y_position))
-        self.screen.blit(self.surface_2,(self.floor_x_pos + screen.get_width(),floor_y_position))
+        self.screen.blit(self.surface_2,(self.floor_x_pos + self.screen.get_width(),floor_y_position))

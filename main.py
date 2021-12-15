@@ -30,20 +30,17 @@ def main():
                 if event.key == pygame.K_SPACE:
                     bird.flap(12)
 
-            pipe = Pipe("_Game/Images/pipe-green.png", (400,900))   
-            pipe_list = _pipe_handler.spawn_pipe(event,pipe)
+            pipe_list = _pipe_handler.spawn_pipe(event)
             print(pipe_list)
 
         screen.blit(bg_surface,(0,0))
         screen.blit(bird.surface,bird.rect)
-        # screen.blit(pipe.surface,pipe.rect) 
         _pipe_handler.pipes_blit(pipe_list, screen)
 
         floor.animate(v["world_speed"],850)
-        # pipe.animate(v["world_speed"])
         _pipe_handler.pipes_animation(pipe_list)
         bird.animate(v["gravity"])
- 
+
 
         pygame.display.update()
         clock.tick(v["fps_limit"])

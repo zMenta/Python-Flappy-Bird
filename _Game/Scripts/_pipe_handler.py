@@ -13,19 +13,33 @@ def spawn_pipe(event,pipe_list=[]):
     Args:
         event (pygame.event.get()): pygame event
     """
+    
     if event.type == SPAWNPIPE:
-        pipe_list.append(create_pipe())
-        
-        if len(pipe_list) >= 6:
+        flip = False
+        pipe_list.append(create_pipe(flip))
+        flip = not flip
+        pipe_list.append(create_pipe(flip))
+
+        if len(pipe_list) >= 12:
             pipe_list.pop(0)
 
     return pipe_list
 
 
-def create_pipe():
+def create_pipe(flip=False):
     """Creates a new pipe
     """
-    pipe = Pipe("_Game/Images/pipe-green.png", (700,900))
+    bottom = (700,900)
+    top = (700,0)
+
+    if flip == False:
+        pipe = Pipe("_Game/Images/pipe-green.png", bottom)
+
+    if flip == True:
+        pipe = Pipe("_Game/Images/pipe-green.png", top)
+        pipe.surface = pygame.transform.flip(pipe.surface, False, True)
+    
+
     return pipe
 
 

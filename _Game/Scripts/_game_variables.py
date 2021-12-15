@@ -7,6 +7,6 @@ variables = {
     "fps_limit": 120,
     "screen_size": (576,1024),
     "gravity": 0.25,
-    "world_speed": 2,
+    "world_speed": 3,
     "spawn_pipe_timer": 1200
 }

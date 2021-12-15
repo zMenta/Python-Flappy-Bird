@@ -15,7 +15,7 @@ def main():
 
     bg_surface = pygame.image.load("_Game/Images/background-day.png").convert()
     bg_surface = pygame.transform.scale2x(bg_surface)
-
+    
     floor = Floor("_Game/Images/base.png", screen)
     bird = Bird("_Game/Images/yellowbird-midflap.png",(100,512), 20)
 
@@ -30,8 +30,7 @@ def main():
                 if event.key == pygame.K_SPACE:
                     bird.flap(12)
 
-            pipe_list = _pipe_handler.spawn_pipe(event)
-            print(pipe_list)
+            pipe_list = _pipe_handler.spawn_pipe(event) 
 
         screen.blit(bg_surface,(0,0))
         screen.blit(bird.surface,bird.rect)
@@ -40,7 +39,6 @@ def main():
         floor.animate(v["world_speed"],850)
         _pipe_handler.pipes_animation(pipe_list)
         bird.animate(v["gravity"])
-
 
         pygame.display.update()
         clock.tick(v["fps_limit"])

@@ -4,20 +4,20 @@ class Floor:
     """
     Floor class and it's method to draw
     """
-    def __init__(self, path, screen) -> None:
+    def __init__(self, sprite_path, screen) -> None:
         """[summary]
 
         Args:
-            path ([type]): Path for the image sprite of the floor
+            sprite_path ([type]): sprite_path for the image sprite of the floor
             screen (pygame.display.set_mode((width,height))): Determines the screen
         """
-        self.path = path
+        self.sprite_path = sprite_path
         self.screen = screen
         self.floor_x_pos = 0
 
-        self.surface_1 = pygame.image.load(self.path).convert()
+        self.surface_1 = pygame.image.load(self.sprite_path).convert()
         self.surface_1 = pygame.transform.scale2x(self.surface_1)
-        self.surface_2 = pygame.image.load(self.path).convert()
+        self.surface_2 = pygame.image.load(self.sprite_path).convert()
         self.surface_2 = pygame.transform.scale2x(self.surface_2)
 
 

@@ -1,16 +1,19 @@
 import sys
 import pygame
 
+from _Game.Scripts.Bird import Bird
 from _Game.Scripts.Floor import Floor
+from _Game.Scripts.game_variables import variables as v
 
 def main():
-    screen = pygame.display.set_mode((576,1024))
+    screen = pygame.display.set_mode(v["screen_size"])
     clock = pygame.time.Clock()
 
     bg_surface = pygame.image.load("_Game/Images/background-day.png").convert()
     bg_surface = pygame.transform.scale2x(bg_surface)
 
-    floor_surface = Floor("_Game/Images/base.png", screen)
+    floor = Floor("_Game/Images/base.png", screen)
+    bird = Bird("_Game/Images/yellowbird-midflap.png",(100,512))
 
     #Game Loop
     while True:
@@ -21,11 +24,12 @@ def main():
 
 
         screen.blit(bg_surface,(0,0))
-        floor_surface.animate(1.3,850)
+        screen.blit(bird.surface,bird.rect)
+        floor.animate(1.3,850)
 
 
         pygame.display.update()
-        clock.tick(120)
+        clock.tick(v["fps_limit"])
 
 if __name__ == "__main__":
     main()

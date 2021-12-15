@@ -13,7 +13,7 @@ def main():
     bg_surface = pygame.transform.scale2x(bg_surface)
 
     floor = Floor("_Game/Images/base.png", screen)
-    bird = Bird("_Game/Images/yellowbird-midflap.png",(100,512), 30)
+    bird = Bird("_Game/Images/yellowbird-midflap.png",(100,512), 20)
 
     #Game Loop
     while True:
@@ -24,11 +24,13 @@ def main():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    bird.flap(150)
+                    bird.flap(12)
 
 
         screen.blit(bg_surface,(0,0))
         screen.blit(bird.surface,bird.rect)
+
+        print(bird.speed)
 
         floor.animate(2,850)
         bird.animate(v["gravity"])

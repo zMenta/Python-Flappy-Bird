@@ -39,6 +39,7 @@ class Bird:
             flap_power (number): [Determines the height of the flap]
         """
 
+        self.speed = 0 
         self.speed -= flap_power
 
         if self.speed >= self.speed_limit:

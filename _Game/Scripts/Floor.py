@@ -15,14 +15,13 @@ class Floor:
         """
         self.path = path
         self.screen = screen
+        self.floor_x_pos = 0
 
         self.surface_1 = pygame.image.load(self.path).convert()
         self.surface_1 = pygame.transform.scale2x(self.surface_1)
         self.surface_2 = pygame.image.load(self.path).convert()
         self.surface_2 = pygame.transform.scale2x(self.surface_2)
 
-        self.floor1_x_pos = 0
-        self.floor2_x_pos = screen.get_width()
 
     def animate(self,speed, floor_y_position):
         """Animates the floor from right to left.
@@ -30,13 +29,9 @@ class Floor:
         Args:
             speed (number): Determines the speed of the animation
         """
-        self.floor1_x_pos -= speed
-        self.floor2_x_pos -= speed
-        if self.floor1_x_pos <= -self.surface_1.get_width():
-            self.floor1_x_pos = self.screen.get_width()
+        self.floor_x_pos -= speed
+        if self.floor_x_pos <= -self.surface_1.get_width():
+            self.floor_x_pos = 0
 
-        if self.floor2_x_pos <= -self.surface_2.get_width():
-            self.floor2_x_pos = self.screen.get_width()
-
-        self.screen.blit(self.surface_1,(self.floor1_x_pos,floor_y_position))
-        self.screen.blit(self.surface_2,(self.floor2_x_pos,floor_y_position))
+        self.screen.blit(self.surface_1,(self.floor_x_pos,floor_y_position))
+        self.screen.blit(self.surface_2,(self.floor_x_pos + screen.get_width(),floor_y_position))

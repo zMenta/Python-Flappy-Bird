@@ -17,7 +17,7 @@ def spawn_pipe(event,randint_modifier=(-230,230),pipe_list=[]):
     """
     
     if event.type == SPAWNPIPE:
-        y_modifier = randint(-250,250)
+        y_modifier = randint(randint_modifier[0],randint_modifier[1])
 
         flip = False
         pipe_list.append(create_pipe(y_modifier,flip))

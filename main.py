@@ -15,7 +15,7 @@ def main():
 
     bg_surface = pygame.image.load("_Game/Images/background-day.png").convert()
     bg_surface = pygame.transform.scale2x(bg_surface)
-    
+
     floor = Floor("_Game/Images/base.png", screen)
     bird = Bird("_Game/Images/yellowbird-midflap.png",(100,512), 20)
 

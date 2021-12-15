@@ -1,6 +1,8 @@
 import sys
 import pygame
 
+from _Game.Scripts.Floor import Floor
+
 def main():
     screen = pygame.display.set_mode((576,1024))
     clock = pygame.time.Clock()
@@ -8,13 +10,7 @@ def main():
     bg_surface = pygame.image.load("_Game/Images/background-day.png").convert()
     bg_surface = pygame.transform.scale2x(bg_surface)
 
-    floor_surface = pygame.image.load("_Game/Images/base.png").convert()
-    floor_surface = pygame.transform.scale2x(floor_surface)
-    floor_surface2 = pygame.image.load("_Game/Images/base.png").convert()
-    floor_surface2 = pygame.transform.scale2x(floor_surface2)
-
-    floor1_x_pos = 0
-    floor2_x_pos = 576
+    floor_surface = Floor("_Game/Images/base.png", screen)
 
     #Game Loop
     while True:
@@ -23,17 +19,9 @@ def main():
                 pygame.quit()
                 sys.exit()
 
+
         screen.blit(bg_surface,(0,0))
-        floor1_x_pos -= 2
-        floor2_x_pos -= 2
-        if floor2_x_pos <= -floor_surface.get_width():
-            floor2_x_pos = 576
-
-        if floor1_x_pos <= -floor_surface.get_width():
-            floor1_x_pos = 576
-
-        screen.blit(floor_surface,(floor1_x_pos,850))
-        screen.blit(floor_surface2,(floor2_x_pos,850))
+        floor_surface.animate(1.3,850)
 
 
         pygame.display.update()

@@ -33,7 +33,7 @@ def spawn_pipe(event,randint_modifier=(-220,220),pipe_list=[]):
 def create_pipe(y_modifier,flip=False):
     """Creates a new pipe
     """
-    bottom = (700,900+y_modifier)
+    bottom = (700,910+y_modifier)
     top = (700,0+y_modifier)
 
     if flip == False:

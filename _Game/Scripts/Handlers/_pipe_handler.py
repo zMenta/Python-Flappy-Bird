@@ -3,8 +3,8 @@ from random import choice
 from typing import Tuple
 import pygame
 
-from _Game.Scripts._game_variables import variables as v
-from _Game.Scripts.Pipe import Pipe
+from _Game.Scripts.Handlers._game_variables import variables as v
+from _Game.Scripts.Objects.Pipe import Pipe
 
 
 SPAWNPIPE = pygame.USEREVENT

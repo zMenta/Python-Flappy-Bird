@@ -1,4 +1,5 @@
 from random import randint
+from typing import Tuple
 import pygame
 
 from _Game.Scripts._game_variables import variables as v
@@ -8,46 +9,45 @@ from _Game.Scripts.Pipe import Pipe
 SPAWNPIPE = pygame.USEREVENT
 pygame.time.set_timer(SPAWNPIPE, v["spawn_pipe_timer"])
 
-def spawn_pipe(event,randint_modifier=(-220,220),pipe_list=[]):
+def spawn_pipe(event,pipe_list_limit=12,pipe_list=[]) -> list:
     """Spawn a pipe.
 
     Args:
         event (pygame.event.get()): pygame event
-        randint_modifier (tuple): Tuple value to be used in randint to modify Y position of the pipes.
+        pipe_list (list): The list that will return
+        pipe_list_limit (int): The maximum number of pipes that are able to be inside the pipe_list
     """
     
     if event.type == SPAWNPIPE:
-        y_modifier = randint(randint_modifier[0],randint_modifier[1])
 
-        flip = False
-        pipe_list.append(create_pipe(y_modifier,flip))
-        flip = not flip
-        pipe_list.append(create_pipe(y_modifier,flip))
-
-        if len(pipe_list) >= 12:
+        pipe_list.extend(create_pipes())
+        
+        if len(pipe_list) >= pipe_list_limit:
             pipe_list.pop(0)
 
     return pipe_list
 
 
-def create_pipe(y_modifier,flip=False):
+def create_pipes(randint_modifier=(-220,220)) -> Tuple:
     """Creates a new pipe
+
+    Args:
+        randint_modifier (tuple): Tuple value to be used in randint to modify Y position of the pipes.
     """
+    y_modifier = randint(randint_modifier[0],randint_modifier[1])
+
     bottom = (700,910+y_modifier)
     top = (700,0+y_modifier)
 
-    if flip == False:
-        pipe = Pipe("_Game/Images/pipe-green.png", bottom)
-
-    if flip == True:
-        pipe = Pipe("_Game/Images/pipe-green.png", top)
-        pipe.surface = pygame.transform.flip(pipe.surface, False, True)
+    bottom_pipe = Pipe("_Game/Images/pipe-green.png", bottom)
+    top_pipe = Pipe("_Game/Images/pipe-green.png", top)
+    top_pipe.surface = pygame.transform.flip(top_pipe.surface, False, True)
     
 
-    return pipe
+    return bottom_pipe,top_pipe
 
 
-def pipes_animation(pipe_list):
+def pipes_animation(pipe_list) -> None:
     """Animates each pipe from the list.
 
     Args:
@@ -56,7 +56,7 @@ def pipes_animation(pipe_list):
     for pipe in pipe_list:
         pipe.animate(v["world_speed"])
 
-def pipes_blit(pipe_list, screen):
+def pipes_blit(pipe_list, screen) -> None:
     """Draws the pipes surfaces on the screen.
 
     Args:

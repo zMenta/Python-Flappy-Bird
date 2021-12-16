@@ -6,7 +6,8 @@ from _Game.Scripts.Objects.Bird import Bird
 from _Game.Scripts.Objects.Floor import Floor
 from _Game.Scripts.Objects.Pipe import Pipe
 from _Game.Scripts.Handlers._game_variables import variables as v
-import _Game.Scripts.Handlers._pipe_handler as _pipe_handler
+import _Game.Scripts.Handlers._pipe_handler as pipe_handler
+import _Game.Scripts.Handlers._bird_handler as bird_handler
 
 def main():
     
@@ -30,19 +31,22 @@ def main():
                 if event.key == pygame.K_SPACE:
                     bird.flap(9)
 
-            pipe_list = _pipe_handler.spawn_pipe(event) 
+            pipe_list = pipe_handler.spawn_pipe(event) 
 
         screen.blit(bg_surface,(0,0))
         screen.blit(bird.surface,bird.rect)
-        _pipe_handler.pipes_blit(pipe_list, screen)
+        pipe_handler.pipes_blit(pipe_list, screen)
 
         floor.animate(v["world_speed"],850)
-        _pipe_handler.pipes_animation(pipe_list)
+        pipe_handler.pipes_animation(pipe_list)
         bird.animate(v["gravity"])
 
-        for pipe in pipe_list:
-            if bird.check_collision(pipe):
-                print("TRUE")
+        # for pipe in pipe_list:
+        #     if bird.check_collision(pipe):
+        #         print("TRUE")
+
+        if bird_handler.bird_out_of_bounds(bird.rect):
+            print("OUT OF BOUNDS")
 
         pygame.display.update()
         clock.tick(v["fps_limit"])

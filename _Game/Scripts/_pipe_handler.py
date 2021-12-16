@@ -1,4 +1,5 @@
 from random import randint
+from random import choice
 from typing import Tuple
 import pygame
 
@@ -28,19 +29,26 @@ def spawn_pipe(event,pipe_list_limit=12,pipe_list=[]) -> list:
     return pipe_list
 
 
-def create_pipes(randint_modifier=(-220,220)) -> Tuple:
+def create_pipes(randint_modifier=(-220,220), random_pipe_sprites=v["random_pipe_sprites"]) -> Tuple:
     """Creates a new pipe
 
     Args:
         randint_modifier (tuple): Tuple value to be used in randint to modify Y position of the pipes.
     """
+    if random_pipe_sprites:
+        pipe_sprites = ["_Game/Images/pipe-green.png","_Game/Images/pipe-red.png"]
+        sprite = choice(pipe_sprites)
+
+    if not random_pipe_sprites:
+        sprite = "_Game/Images/pipe-green.png"
+
     y_modifier = randint(randint_modifier[0],randint_modifier[1])
 
     bottom = (700,910+y_modifier)
     top = (700,0+y_modifier)
 
-    bottom_pipe = Pipe("_Game/Images/pipe-green.png", bottom)
-    top_pipe = Pipe("_Game/Images/pipe-green.png", top)
+    bottom_pipe = Pipe(sprite, bottom)
+    top_pipe = Pipe(sprite, top)
     top_pipe.surface = pygame.transform.flip(top_pipe.surface, False, True)
     
 

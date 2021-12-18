@@ -5,9 +5,9 @@ pygame.init()
 from _Game.Scripts.Objects.Bird import Bird
 from _Game.Scripts.Objects.Floor import Floor
 from _Game.Scripts.Objects.Pipe import Pipe
-from _Game.Scripts.Handlers._game_variables import variables as v
-import _Game.Scripts.Handlers._pipe_handler as pipe_handler
-import _Game.Scripts.Handlers._bird_handler as bird_handler
+from _Game.Scripts.Handlers.game_variables import variables as v
+import _Game.Scripts.Handlers.pipe_handler as pipe_handler
+import _Game.Scripts.Handlers.bird_handler as bird_handler
 
 def main():
     
@@ -40,10 +40,6 @@ def main():
         floor.animate(v["world_speed"],850)
         pipe_handler.pipes_animation(pipe_list)
         bird.animate(v["gravity"])
-
-        # for pipe in pipe_list:
-        #     if bird.check_collision(pipe):
-        #         print("TRUE")
 
         if bird_handler.bird_out_of_bounds(bird.rect):
             print("OUT OF BOUNDS")

@@ -47,3 +47,16 @@ class Bird:
 
         if self.speed <= -self.speed_limit:
             self.speed = -self.speed_limit
+
+    
+    def check_collision(self, target_rect) -> bool:
+        """
+        Checks for collisions for the bird. Returns true if the bird had collision withe the target rect.
+
+        Args:
+            target_rect (pygame.rect): The target rect that you want to check for collisions.
+        """
+        if self.rect.colliderect(target_rect):
+            return True
+
+        return False

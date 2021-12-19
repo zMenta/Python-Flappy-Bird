@@ -1,4 +1,5 @@
 import pygame
+from _Game.Scripts.Options.game_variables import variables as v
 
 class Bird:
     def __init__(self, sprite_path, position, speed_limit=250) -> None:
@@ -13,7 +14,8 @@ class Bird:
         self.position = position
 
         self.surface = pygame.image.load(self.sprite_path).convert()
-        self.surface = pygame.transform.scale2x(self.surface)
+        if v["screen_size"] == (576,1024):
+            self.surface = pygame.transform.scale2x(self.surface)
 
         self.rect = self.surface.get_rect(center = self.position)
         self.speed = 0

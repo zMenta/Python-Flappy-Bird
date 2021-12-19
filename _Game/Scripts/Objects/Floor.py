@@ -1,4 +1,5 @@
 import pygame
+from _Game.Scripts.Options.game_variables import variables as v
 
 class Floor:
     """
@@ -16,9 +17,10 @@ class Floor:
         self.floor_x_pos = 0
 
         self.surface_1 = pygame.image.load(self.sprite_path).convert()
-        self.surface_1 = pygame.transform.scale2x(self.surface_1)
         self.surface_2 = pygame.image.load(self.sprite_path).convert()
-        self.surface_2 = pygame.transform.scale2x(self.surface_2)
+        if v["screen_size"] == (576,1024):
+            self.surface_1 = pygame.transform.scale2x(self.surface_1)
+            self.surface_2 = pygame.transform.scale2x(self.surface_2)
 
 
     def animate(self,speed, floor_y_position):

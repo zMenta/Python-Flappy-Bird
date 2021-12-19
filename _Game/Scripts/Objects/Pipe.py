@@ -1,4 +1,5 @@
 import pygame
+from _Game.Scripts.Options.game_variables import variables as v
 pygame.init()
 
 class Pipe:
@@ -13,7 +14,8 @@ class Pipe:
         self.position = position
 
         self.surface = pygame.image.load(sprite_path).convert()
-        self.surface = pygame.transform.scale2x(self.surface)
+        if v["screen_size"] == (576,1024):
+            self.surface = pygame.transform.scale2x(self.surface)
 
         self.rect = self.surface.get_rect(center = self.position)
 

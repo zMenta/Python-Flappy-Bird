@@ -42,7 +42,7 @@ def main():
         pipe_handler.pipes_animation(pipe_list)
         bird.animate(v["gravity"])
 
-        if bird_handler.bird_out_of_bounds(bird.rect):
+        if bird_handler.bird_out_of_bounds(bird.rect, screen.get_height() - floor.surface_1.get_height()/2, screen.get_height()*1.2 ):
             print("OUT OF BOUNDS")
 
         pygame.display.update()

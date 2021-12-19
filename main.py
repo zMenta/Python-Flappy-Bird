@@ -5,7 +5,7 @@ pygame.init()
 from _Game.Scripts.Objects.Bird import Bird
 from _Game.Scripts.Objects.Floor import Floor
 from _Game.Scripts.Objects.Pipe import Pipe
-from _Game.Scripts.Handlers.game_variables import variables as v
+from _Game.Scripts.Options.game_variables import variables as v
 import _Game.Scripts.Handlers.pipe_handler as pipe_handler
 import _Game.Scripts.Handlers.bird_handler as bird_handler
 
